@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESLA PIZZA | Performance Audit & Design 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tesla-red: #e82127;
+            --tesla-green: #00ff41;
+            --dark: #050505;
+            --success: #34c759;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--dark);
+            color: #fff;
+            scroll-snap-type: y mandatory; 
+            overflow-y: scroll; 
+            scroll-behavior: smooth;
+            text-align: center;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 25px;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- SEKCIJA 0: DIAGNOSTIKA --- */
+        #audit { 
+            background: radial-gradient(circle at center, #1a0505 0%, #000 100%); 
+            font-family: 'JetBrains Mono', monospace; 
+        }
+        
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--tesla-red); box-shadow: 0 0 25px var(--tesla-red);
+            animation: scan 4s ease-in-out infinite; z-index: 10; opacity: 0.5;
+        }
+        @keyframes scan { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+
+        .brand-badge { 
+            background: var(--tesla-red); color: #fff; font-size: 10px; font-weight: 900; 
+            padding: 5px 15px; letter-spacing: 3px; margin-bottom: 20px; text-transform: uppercase; 
+        }
+
+        .url-display { 
+            font-size: 16px; font-weight: 700; color: #fff; border-bottom: 2px solid var(--tesla-red); 
+            padding-bottom: 5px; margin-bottom: 25px; display: inline-block; 
+        }
+
+        h1.audit-title { 
+            font-size: 38px; font-weight: 900; margin-bottom: 25px; line-height: 0.85; 
+            text-transform: uppercase; letter-spacing: -2px; 
+        }
+        .highlight-red { color: var(--tesla-red); display: block; font-size: 48px; }
+
+        .metric-container { width: 100%; max-width: 340px; margin: 20px 0; }
+        .metric-row { 
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(232, 33, 39, 0.2); 
+            padding: 18px; border-radius: 4px; margin-bottom: 12px; 
+            display: flex; justify-content: space-between; align-items: center; 
+        }
+        .metric-label { font-size: 9px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .metric-val { font-weight: bold; font-size: 14px; }
+        .bad { color: var(--tesla-red); text-shadow: 0 0 8px var(--tesla-red); }
+
+        .roast-text { 
+            font-size: 14px; color: #aaa; line-height: 1.6; margin: 15px 0 30px 0; 
+            padding: 0 20px; max-width: 360px; font-style: italic;
+        }
+
+        /* --- SEKCIJE DIZAJNA --- */
+        #v-neon { background: #000; color: var(--tesla-green); }
+        #v-white { background: #fdfdfd; color: #000; }
+        
+        .variant-label { 
+            font-size: 10px; font-weight: 900; letter-spacing: 4px; margin-bottom: 15px; 
+            display: block; text-transform: uppercase; color: #888;
+        }
+
+        .img-container { 
+            width: 100%; max-width: 380px; border-radius: 12px; overflow: hidden; 
+            margin-bottom: 30px; box-shadow: 0 30px 70px rgba(0,0,0,0.8); 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
+        .img-container img { width: 100%; height: auto; display: block; }
+
+        /* --- FINALNI DEAL & REPORT --- */
+        .price-tag { 
+            font-size: 85px; font-weight: 900; color: var(--success); 
+            line-height: 1; letter-spacing: -4px; margin: 20px 0;
+        }
+        
+        .cta-btn { 
+            display: block; width: 100%; max-width: 320px; padding: 25px; 
+            background: var(--tesla-red); color: #fff; text-decoration: none; 
+            font-weight: 900; border-radius: 6px; text-transform: uppercase; 
+            letter-spacing: 2px; margin-top: 25px; animation: pulse 2s infinite; 
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.04); } 100% { transform: scale(1); } }
+
+        .dossier-box { 
+            margin: 30px auto; max-width: 340px; border: 1px dashed #444; 
+            padding: 25px; border-radius: 8px; background: #0a0a0a; text-align: left;
+        }
+        .dossier-list { font-size: 12px; color: #999; margin-top: 15px; list-style: none; line-height: 2; }
+        .dossier-list b { color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <section id="audit">
+        <div class="scan-line"></div>
+        <div class="brand-badge">Status: Audit läuft</div>
+        <div class="url-display">WWW.TESLAPIZZA.AT</div>
+        
+        <h1 class="audit-title">
+            PIZZA IST TOP.<br>
+            <span class="highlight-red">WEBSITE IST FLOP.</span>
+        </h1>
+        
+        <div class="metric-container">
+            <div class="metric-row"><span class="metric-label">Google Ranking</span><span class="metric-val bad">UNSICHTBAR</span></div>
+            <div class="metric-row"><span class="metric-label">Ladezeit (Mobile)</span><span class="metric-val bad">EXTREM LANGSAM</span></div>
+            <div class="metric-row"><span class="metric-label">Umsatz-Verlust</span><span class="metric-val bad">HOCH</span></div>
+        </div>
+
+        <div class="roast-text">
+            „Deine Pizza im 15. Bezirk ist Weltklasse. Aber deine Webseite schreckt Kunden ab. Während die Konkurrenz mit schnellen Klicks Geld verdient, warten deine Kunden 10 Sekunden, bis ein Bild lädt. Wir ändern das heute.“
+        </div>
+        <a href="#v-neon" class="cta-btn" style="background:transparent; border: 1px solid #444; font-size: 11px; padding: 15px;">Lösung ansehen ↓</a>
+    </section>
+
+    <section id="v-neon">
+        <span class="variant-label">Concept 01: Cyber 1150</span>
+        <h2 style="font-size: 42px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase;">Tesla<br>Pulse.</h2>
+        <div class="img-container">
+            <img src="neonpizza.png" alt="Tesla Pizza Neon Concept">
+        </div>
+        <p style="max-width: 320px; font-weight: 500;">Aggressiv, modern, unübersehbar. Gebaut für den maximalen 'Hunger-Effekt' am Smartphone.</p>
+    </section>
+
+    <section id="v-white">
+        <span class="variant-label">Concept 02: Minimal Art</span>
+        <h2 style="font-size: 42px; font-weight: 900; margin-bottom: 20px; text-transform: uppercase;">Clean<br>Bite.</h2>
+        <div class="img-container">
+            <img src="whpizza.png" alt="Tesla Pizza Minimal Concept">
+        </div>
+        <p style="max-width: 320px;">Fokus auf Reinheit und Schnelligkeit. UX-Design, das den Kunden direkt zum 'Bestellen'-Button führt.</p>
+    </section>
+
+    <section id="deal">
+        <div class="brand-badge" style="background: #fff; color: #000;">Fixpreis-Angebot</div>
+        <h1>INVESTITION:</h1>
+        <div class="price-tag">499 €</div>
+        <p style="color: #666; text-transform: uppercase; font-size: 11px; letter-spacing: 2px;">Einmalig // Keine monatlichen Gebühren</p>
+
+        <a href="https://wa.me/TVOJ_BROJ" class="cta-btn">JETZT MODERNISIEREN</a>
+    </section>
+
+    <section id="report" style="background: #111;">
+        <div class="brand-badge" style="background: #555;">Dossier Status: Finalisiert</div>
+        <h2 style="font-size: 32px; text-transform: uppercase; margin-bottom: 20px;">Digitaler Bericht</h2>
+        
+        <div class="dossier-box">
+            <span style="color: var(--tesla-red); font-weight: 900; font-size: 10px; letter-spacing: 2px;">STRATEGISCHE ANALYSE:</span>
+            <ul class="dossier-list">
+                <li>📉 <b>Kapitel 1:</b> Warum 90% der Wiener deine Seite sofort verlassen.</li>
+                <li>🔥 <b>Kapitel 2:</b> Performance-Lücken deiner aktuellen Präsenz.</li>
+                <li>💰 <b>Kapitel 3:</b> Dein Weg zur digitalen Marktführerschaft im 15.</li>
+            </ul>
+        </div>
+        
+        <p style="font-size: 11px; color: #444; margin-top: 40px;">TESLA PIZZA PERFORMANCE AUDIT // WIEN 2026</p>
+    </section>
+
+</body>
+</html>
